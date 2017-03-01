@@ -22,14 +22,12 @@ path = ARGV[0]
 Dir.chdir(path)
 filename = "#{path}#{Dir.glob("*.mkv").first(1)[0]}"
 puts filename
-info_command = `mkvinfo "#{filename}" | grep 'Name\\|Track number\\|A track'`
+info_command = `mkvinfo "#{filename}" | grep 'Nom :\\|Numéro de piste\\|Type de piste\\|Une piste'`
 puts info_command
 # value = `#{cmd}`
 
-
-
+puts "\nSelect the subtitles track id to extract: "
 track_number = Integer(STDIN.gets.chomp)
-
 
 Dir.glob("#{path}*.mkv") do | mkv_path |
   mkv_name = File.basename( mkv_path, ".*" )
